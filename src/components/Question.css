@@ -1,0 +1,26 @@
+.question {
+    margin-top: 10%;
+    border: solid 2px #FFF;
+    border-radius: 5px;
+    opacity: 0.8;    
+    background-color: #FFF;
+    padding: 20px;
+}
+
+.question li {
+    margin: 10px;
+}
+
+.question label {
+    margin-left: 10px;
+}
+
+.question p {
+    font-weight: bold;
+}
+
+@media (max-width: 800px) {
+    .question {
+        margin-top: 2%;
+    }  
+  }

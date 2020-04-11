@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import QuestionGenerator from '../services/QuestionGenerator';
+import './Question.css';
 
 class Question extends React.Component {  
     state = {
@@ -64,35 +65,38 @@ class Question extends React.Component {
     };
   
     render() {
-      const answerList = this.state.allAnswers.map(answer => {
+      const answerList = this.state.allAnswers.map((answer, index) => {
         return (
-          <div key={this.state.questionNumber + '_' + answer}>
-            <input type="checkbox" name="side-effect-answers" value={answer} onChange={this.onAnswerClick} />
-            <span>{answer}</span>
-          </div>
+          <li key={this.state.questionNumber + '_' + index}>
+            <input id={this.state.questionNumber + '_' + index} type="checkbox" name="side-effect-answers" value={answer} onChange={this.onAnswerClick} />
+            <label for={this.state.questionNumber + '_' + index}>{answer}</label>
+          </li>
         )
       });
       
       let result = (<button onClick={this.checkQuestionAnswers}>Submit</button>);
       if (this.state.hasSubmittedAnswers) {
+        const correctAnswers = this.state.correctAnswers.join(', ');
         result = (
           <div>
-            {this.state.chosenAnswersAreCorrect ? 
-              'Het antwoord was goed!' : 
-              `Het antwoord is fout, het goede antwoord is: ${this.state.correctAnswers}` 
-            }
+            <p>
+              {this.state.chosenAnswersAreCorrect ? 
+                'Het antwoord was goed!' : 
+                `Het antwoord is fout, het goede antwoord is: ${correctAnswers}` 
+              }
+            </p>
             <button onClick={this.onNextQuestionClick}>Volgende vraag</button>
           </div>
         );   
       }
       
       return (
-        <div>
-          <div>{this.state.questionText}</div>
-          <div>
-            {answerList}
-            {result}       
-          </div>
+        <div className="question">
+          <h2>{this.state.questionText}</h2>
+          <ul>
+            {answerList}              
+          </ul>
+          {result}
         </div>
       );
     }

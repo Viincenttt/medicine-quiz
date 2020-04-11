@@ -137,7 +137,7 @@ class QuestionGenerator {
     }
 
     return {
-      question: `Wat zijn de bijeffecten van ${randomMedicine.name}`,
+      question: `Wat zijn de bijeffecten van ${randomMedicine.name}?`,
       correctAnswers: randomMedicine.sideEffects,
       allAnswers: this.shuffleArray(allAnswers),
     };
