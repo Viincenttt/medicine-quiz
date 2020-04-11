@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/medicine-quiz/static/css/main.e691eb93.chunk.css",
-    "main.js": "/medicine-quiz/static/js/main.ea101a40.chunk.js",
-    "main.js.map": "/medicine-quiz/static/js/main.ea101a40.chunk.js.map",
+    "main.css": "/medicine-quiz/static/css/main.97667df3.chunk.css",
+    "main.js": "/medicine-quiz/static/js/main.23d306d6.chunk.js",
+    "main.js.map": "/medicine-quiz/static/js/main.23d306d6.chunk.js.map",
     "runtime-main.js": "/medicine-quiz/static/js/runtime-main.bfd7acfe.js",
     "runtime-main.js.map": "/medicine-quiz/static/js/runtime-main.bfd7acfe.js.map",
-    "static/js/2.80112fc8.chunk.js": "/medicine-quiz/static/js/2.80112fc8.chunk.js",
-    "static/js/2.80112fc8.chunk.js.map": "/medicine-quiz/static/js/2.80112fc8.chunk.js.map",
+    "static/js/2.f5b42869.chunk.js": "/medicine-quiz/static/js/2.f5b42869.chunk.js",
+    "static/js/2.f5b42869.chunk.js.map": "/medicine-quiz/static/js/2.f5b42869.chunk.js.map",
     "index.html": "/medicine-quiz/index.html",
-    "precache-manifest.696986bd0723cec4b5a420450c0a6e19.js": "/medicine-quiz/precache-manifest.696986bd0723cec4b5a420450c0a6e19.js",
+    "precache-manifest.fcb27ecc650f02bcb5b8decc1a04693c.js": "/medicine-quiz/precache-manifest.fcb27ecc650f02bcb5b8decc1a04693c.js",
     "service-worker.js": "/medicine-quiz/service-worker.js",
-    "static/css/main.e691eb93.chunk.css.map": "/medicine-quiz/static/css/main.e691eb93.chunk.css.map",
-    "static/js/2.80112fc8.chunk.js.LICENSE.txt": "/medicine-quiz/static/js/2.80112fc8.chunk.js.LICENSE.txt"
+    "static/css/main.97667df3.chunk.css.map": "/medicine-quiz/static/css/main.97667df3.chunk.css.map",
+    "static/js/2.f5b42869.chunk.js.LICENSE.txt": "/medicine-quiz/static/js/2.f5b42869.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.bfd7acfe.js",
-    "static/js/2.80112fc8.chunk.js",
-    "static/css/main.e691eb93.chunk.css",
-    "static/js/main.ea101a40.chunk.js"
+    "static/js/2.f5b42869.chunk.js",
+    "static/css/main.97667df3.chunk.css",
+    "static/js/main.23d306d6.chunk.js"
   ]
 }
