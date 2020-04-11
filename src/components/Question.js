@@ -52,7 +52,7 @@ class Question extends React.Component {
 
     checkQuestionAnswers = () => {
       let chosenAnswersAreCorrect = this.state.chosenAnswers.length === this.state.correctAnswers.length;
-      for (const chosenAnswer in this.state.chosenAnswers) {
+      for (const chosenAnswer of this.state.chosenAnswers) {
         if (!this.state.correctAnswers.includes(chosenAnswer)) {
           chosenAnswersAreCorrect = false;
         }
