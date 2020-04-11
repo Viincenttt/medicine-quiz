@@ -110,8 +110,19 @@ class QuestionGenerator {
     },
   ];
 
-  getRandomElementFromArray = (data) => {
-    return data[Math.floor(Math.random() * data.length)];
+  getRandomElementFromArray = (array) => {
+    return array[Math.floor(Math.random() * array.length)];
+  };
+
+  shuffleArray = (array) => {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    return array;
   };
 
   generateQuestion = () => {
@@ -123,10 +134,10 @@ class QuestionGenerator {
     const allAnswers = [randomCorrectSideEffect];
     while (allAnswers.length < 4) {
       const randomSideEffect = this.getRandomElementFromArray(this.sideEffects);
-      if (
-        !allAnswers.includes(randomSideEffect) &&
-        !randomMedicine.sideEffects.includes(randomSideEffect)
-      ) {
+      const isSideEffectAlreadyInAllAnswersArray = allAnswers.includes(randomSideEffect);
+      const isSideEffectCorrectAnswer = randomMedicine.sideEffects.includes(randomSideEffect);
+
+      if (!isSideEffectAlreadyInAllAnswersArray && !isSideEffectCorrectAnswer) {
         allAnswers.push(randomSideEffect);
       }
     }
@@ -134,7 +145,7 @@ class QuestionGenerator {
     return {
       question: `Wat zijn de bijeffecten van ${randomMedicine.name}`,
       correctAnswer: randomCorrectSideEffect,
-      allAnswers: allAnswers,
+      allAnswers: this.shuffleArray(allAnswers),
     };
   };
 }
