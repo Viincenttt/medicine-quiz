@@ -69,7 +69,7 @@ class Question extends React.Component {
         return (
           <li key={this.state.questionNumber + '_' + index}>
             <input id={this.state.questionNumber + '_' + index} type="checkbox" name="side-effect-answers" value={answer} onChange={this.onAnswerClick} />
-            <label for={this.state.questionNumber + '_' + index}>{answer}</label>
+            <label htmlFor={this.state.questionNumber + '_' + index}>{answer}</label>
           </li>
         )
       });
