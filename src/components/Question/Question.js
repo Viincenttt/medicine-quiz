@@ -13,7 +13,7 @@ function Question (props) {
         <input
           id={props.questionNumber + "_" + index}
           type={questionType}
-          name="side-effect-answers"
+          name="question-answers"
           value={answer}
           onChange={props.onAnswerClick}
         />
