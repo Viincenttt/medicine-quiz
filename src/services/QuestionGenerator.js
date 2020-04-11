@@ -16,35 +16,42 @@ class QuestionGenerator {
     return array;
   };
 
-  getAllSideEffects = () => {
-    const allSideEffectArrays = medicines.map((x) => x.sideEffects);
-    const allSideEffects = [].concat.apply([], allSideEffectArrays);
-
-    const distinctSideEffects = allSideEffects.filter((value, index, self) => {
+  getDistinctValues = (array) => {
+    const allValues = [].concat.apply([], array);
+    const distinctValues = allValues.filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
 
-    return distinctSideEffects;
+    return distinctValues;
   };
+
+  getAllSideEffects = () => {
+    const allSideEffects = [].concat.apply([], medicines.map((x) => x.sideEffects));
+    return this.getDistinctValues(allSideEffects);
+  };
+
+  getAllMedicineBrands = () => {
+    return this.getDistinctValues(medicines.map((x) => x.brandName));
+  }
+
+  generateAnswers = (correctAnswers, allPossibleAnswers) => {
+    const allAnswers = [...correctAnswers];
+    const minimumNumberOfAnswers = 10;
+    while (allAnswers.length < minimumNumberOfAnswers) {
+      const randomAnswer = this.getRandomElementFromArray(allPossibleAnswers);
+      const isAnswerAlreadyInArray = allAnswers.includes(randomAnswer);
+
+      if (!isAnswerAlreadyInArray) {
+        allAnswers.push(randomAnswer);
+      }
+    }
+
+    return allAnswers;
+  }
 
   generateQuestion = () => {
     const randomMedicine = this.getRandomElementFromArray(medicines);
-    const allSideEffects = this.getAllSideEffects();
-
-    const allAnswers = [...randomMedicine.sideEffects];
-    while (allAnswers.length < 10) {
-      const randomSideEffect = this.getRandomElementFromArray(allSideEffects);
-      const isSideEffectAlreadyInAllAnswersArray = allAnswers.includes(
-        randomSideEffect
-      );
-      const isSideEffectCorrectAnswer = randomMedicine.sideEffects.includes(
-        randomSideEffect
-      );
-
-      if (!isSideEffectAlreadyInAllAnswersArray && !isSideEffectCorrectAnswer) {
-        allAnswers.push(randomSideEffect);
-      }
-    }
+    const allAnswers = this.generateAnswers(randomMedicine.sideEffects, this.getAllSideEffects());
 
     return {
       text: `Wat zijn de bijeffecten van ${randomMedicine.name}?`,
