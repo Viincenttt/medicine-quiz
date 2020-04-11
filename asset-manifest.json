@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/medicine-quiz/static/css/main.5f361e03.chunk.css",
+    "main.js": "/medicine-quiz/static/js/main.711d85ca.chunk.js",
+    "main.js.map": "/medicine-quiz/static/js/main.711d85ca.chunk.js.map",
+    "runtime-main.js": "/medicine-quiz/static/js/runtime-main.bfd7acfe.js",
+    "runtime-main.js.map": "/medicine-quiz/static/js/runtime-main.bfd7acfe.js.map",
+    "static/js/2.6d7a00b3.chunk.js": "/medicine-quiz/static/js/2.6d7a00b3.chunk.js",
+    "static/js/2.6d7a00b3.chunk.js.map": "/medicine-quiz/static/js/2.6d7a00b3.chunk.js.map",
+    "index.html": "/medicine-quiz/index.html",
+    "precache-manifest.d7241c9de4befe17eb5f7427bfc8a2df.js": "/medicine-quiz/precache-manifest.d7241c9de4befe17eb5f7427bfc8a2df.js",
+    "service-worker.js": "/medicine-quiz/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/medicine-quiz/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.6d7a00b3.chunk.js.LICENSE.txt": "/medicine-quiz/static/js/2.6d7a00b3.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/medicine-quiz/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bfd7acfe.js",
+    "static/js/2.6d7a00b3.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.711d85ca.chunk.js"
+  ]
+}
