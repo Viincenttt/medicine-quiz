@@ -57,6 +57,7 @@ class QuestionGenerator {
       text: options.text,
       correctAnswers: options.correctAnswers,
       questionAnswers: questionAnswers,
+      isMultipleChoice: options.isMultipleChoice
     };
   };
 
@@ -67,7 +68,8 @@ class QuestionGenerator {
       text: `Wat zijn de bijeffecten van ${randomMedicine.name}?`,
       correctAnswers: randomMedicine.sideEffects,
       listOfPossibleAnswers: this.getAllSideEffects(),
-      totalNumberOfAnswers: 10
+      totalNumberOfAnswers: 10,
+      isMultipleChoice: true
     });
   };
 
@@ -78,7 +80,8 @@ class QuestionGenerator {
       text: `Wat is het merk van ${randomMedicine.name}?`,
       correctAnswers: [randomMedicine.brandName],
       listOfPossibleAnswers: this.getAllMedicineBrands(),
-      totalNumberOfAnswers: 5
+      totalNumberOfAnswers: 5,
+      isMultipleChoice: false
     });
   };
 

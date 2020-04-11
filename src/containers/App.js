@@ -30,7 +30,9 @@ class App extends React.Component {
 
   onAnswerClick = (e) => {
     const chosenAnswer = e.currentTarget.value;
-    const chosenAnswers = [...this.state.chosenAnswers];
+    const chosenAnswers = this.state.question.isMultipleChoice ? 
+      [...this.state.chosenAnswers] : 
+      [];
 
     if (e.currentTarget.checked) {
       chosenAnswers.push(chosenAnswer);
