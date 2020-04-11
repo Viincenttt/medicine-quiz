@@ -1,6 +1,7 @@
 import React from 'react';
 import Question from '../components/Question/Question';
 import QuestionGenerator from '../services/QuestionGenerator';
+import Submit from '../components/Submit/Submit';
 import './App.css';
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
   generateNewQuestion = () => {
     const questionGenerator = new QuestionGenerator();
     const generatedQuestion = questionGenerator.generateQuestion();
-
+    console.log(generatedQuestion.correctAnswers);
     this.setState({
       question: generatedQuestion,
       chosenAnswers: [],
@@ -43,7 +44,7 @@ class App extends React.Component {
     this.generateNewQuestion();
   };
 
-  checkQuestionAnswers = () => {
+  onSubmitAnswers = () => {
     let chosenAnswersAreCorrect = this.state.chosenAnswers.length === this.state.question.correctAnswers.length;
     for (const chosenAnswer of this.state.chosenAnswers) {
       if (!this.state.question.correctAnswers.includes(chosenAnswer)) {
@@ -62,29 +63,19 @@ class App extends React.Component {
   };  
 
   render() {
-    let result = (<button onClick={this.checkQuestionAnswers}>Inleveren</button>);
-    if (this.state.hasSubmittedAnswers) {
-      const correctAnswers = this.state.question.correctAnswers.join(', ');
-      result = (
-        <div>
-          <p>
-            {this.state.chosenAnswersAreCorrect ? 
-              'Het antwoord was goed!' : 
-              `Het antwoord is fout, het goede antwoord is: ${correctAnswers}` 
-            }
-          </p>
-          <button onClick={this.onNextQuestionClick}>Volgende vraag</button>
-        </div>
-      );   
-    }
-
     return (
       <div className="main-content">
         <Question 
           question={this.state.question}
           questionNumber={this.state.questionNumber}
           onAnswerClick={this.onAnswerClick} />
-        {result}
+
+        <Submit 
+          question={this.state.question}
+          hasSubmittedAnswers={this.state.hasSubmittedAnswers}
+          chosenAnswersAreCorrect={this.state.chosenAnswersAreCorrect}
+          onNextQuestionClick={this.onNextQuestionClick}
+          onSubmitAnswers={this.onSubmitAnswers} />
       </div>
     );
   }
