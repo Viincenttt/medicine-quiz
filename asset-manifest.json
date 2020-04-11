@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/medicine-quiz/static/css/main.97667df3.chunk.css",
-    "main.js": "/medicine-quiz/static/js/main.dd3332b0.chunk.js",
-    "main.js.map": "/medicine-quiz/static/js/main.dd3332b0.chunk.js.map",
+    "main.js": "/medicine-quiz/static/js/main.e2208e96.chunk.js",
+    "main.js.map": "/medicine-quiz/static/js/main.e2208e96.chunk.js.map",
     "runtime-main.js": "/medicine-quiz/static/js/runtime-main.bfd7acfe.js",
     "runtime-main.js.map": "/medicine-quiz/static/js/runtime-main.bfd7acfe.js.map",
     "static/js/2.bd109f24.chunk.js": "/medicine-quiz/static/js/2.bd109f24.chunk.js",
     "static/js/2.bd109f24.chunk.js.map": "/medicine-quiz/static/js/2.bd109f24.chunk.js.map",
     "index.html": "/medicine-quiz/index.html",
-    "precache-manifest.37a51bac8168843a0cf3fa650bfd7ed0.js": "/medicine-quiz/precache-manifest.37a51bac8168843a0cf3fa650bfd7ed0.js",
+    "precache-manifest.2d99ad040102656b275a3867e154972b.js": "/medicine-quiz/precache-manifest.2d99ad040102656b275a3867e154972b.js",
     "service-worker.js": "/medicine-quiz/service-worker.js",
     "static/css/main.97667df3.chunk.css.map": "/medicine-quiz/static/css/main.97667df3.chunk.css.map",
     "static/js/2.bd109f24.chunk.js.LICENSE.txt": "/medicine-quiz/static/js/2.bd109f24.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.bfd7acfe.js",
     "static/js/2.bd109f24.chunk.js",
     "static/css/main.97667df3.chunk.css",
-    "static/js/main.dd3332b0.chunk.js"
+    "static/js/main.e2208e96.chunk.js"
   ]
 }
