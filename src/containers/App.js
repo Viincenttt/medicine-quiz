@@ -5,11 +5,15 @@ import Submit from '../components/Submit/Submit';
 import './App.css';
 
 class App extends React.Component {
-  state = {
+  unansweredQuestionState = {
     question: null,
     chosenAnswers: [],
     hasSubmittedAnswers: false,
     chosenAnswersAreCorrect: false,
+  };
+
+  state = {
+    ...this.unansweredQuestionState,
     questionNumber: 0
   };
 
@@ -18,10 +22,8 @@ class App extends React.Component {
     const generatedQuestion = questionGenerator.generateQuestion();
 
     this.setState({
+      ...this.unansweredQuestionState,
       question: generatedQuestion,
-      chosenAnswers: [],
-      hasSubmittedAnswers: false,
-      chosenAnswersAreCorrect: false,
       questionNumber: this.state.questionNumber + 1
     });
   };

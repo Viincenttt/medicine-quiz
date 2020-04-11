@@ -48,7 +48,7 @@ class QuestionGenerator {
       }
     }
 
-    return allAnswers;
+    return this.shuffleArray(allAnswers);
   };
 
   generateRandomSideEffectsQuestion = () => {
@@ -58,7 +58,7 @@ class QuestionGenerator {
     return {
       text: `Wat zijn de bijeffecten van ${randomMedicine.name}?`,
       correctAnswers: randomMedicine.sideEffects,
-      allAnswers: this.shuffleArray(allAnswers),
+      allAnswers: allAnswers,
     };
   };
 
@@ -70,7 +70,7 @@ class QuestionGenerator {
     return {
       text: `Wat is het merk van ${randomMedicine.name}?`,
       correctAnswers: [randomMedicine.brandName],
-      allAnswers: this.shuffleArray(allAnswers),
+      allAnswers: allAnswers,
     };
   };
 
