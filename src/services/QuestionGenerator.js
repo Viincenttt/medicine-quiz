@@ -31,7 +31,10 @@ class QuestionGenerator {
   };
 
   getAllMedicineBrands = () => {
-    return this.getDistinctValues(medicines.map((x) => x.brandName));
+    return this.getDistinctValues(medicines
+      .filter(x => x !== null)
+      .map((x) => x.brandName)
+    );
   };
 
   generateAnswers = (correctAnswers, allPossibleAnswers, minimumNumberOfAnswers) => {
