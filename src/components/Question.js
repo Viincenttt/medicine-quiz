@@ -4,10 +4,12 @@ import QuestionGenerator from '../services/QuestionGenerator';
 class Question extends React.Component {  
     state = {
       questionText: '',
-      correctAnswer: '',
-      allAnswers: [''],
-      chosenAnswer: '',
-      chosenAnswerIsCorrect: false
+      correctAnswers: [],
+      allAnswers: [],
+      chosenAnswers: [],
+      hasSubmittedAnswers: false,
+      chosenAnswersAreCorrect: false,
+      questionNumber: 0
     };
     
     generateNewQuestion = () => {
@@ -16,11 +18,13 @@ class Question extends React.Component {
   
       this.setState({
         questionText: generatedQuestion.question,
-        correctAnswer: generatedQuestion.correctAnswer,
+        correctAnswers: generatedQuestion.correctAnswers,
         allAnswers: generatedQuestion.allAnswers,
-        chosenAnswer: '',
-        chosenAnswerIsCorrect: false
-      });    
+        chosenAnswers: [],
+        hasSubmittedAnswers: false,
+        chosenAnswersAreCorrect: false,
+        questionNumber: this.state.questionNumber + 1
+      });
     };
   
     componentDidMount() {    
@@ -29,43 +33,57 @@ class Question extends React.Component {
     
     onAnswerClick = (e) => {
       const chosenAnswer = e.currentTarget.value;
-      const chosenAnswerIsCorrect = chosenAnswer === this.state.correctAnswer;
+      const chosenAnswers = [...this.state.chosenAnswers];
+
+      if (e.currentTarget.checked) {
+        chosenAnswers.push(chosenAnswer);
+      }
+      else {
+        chosenAnswers.splice(chosenAnswers.indexOf(chosenAnswer), 1);
+      }
       
-      this.setState({
-        chosenAnswer: chosenAnswer,
-        chosenAnswerIsCorrect: chosenAnswerIsCorrect
-      });    
+      this.setState({chosenAnswers: chosenAnswers});
     };
   
     onNextQuestionClick = () => {
       this.generateNewQuestion();
-    }
+    };
+
+    checkQuestionAnswers = () => {
+      let chosenAnswersAreCorrect = this.state.chosenAnswers.length === this.state.correctAnswers.length;
+      for (const chosenAnswer in this.state.chosenAnswers) {
+        if (!this.state.correctAnswers.includes(chosenAnswer)) {
+          chosenAnswersAreCorrect = false;
+        }
+      }
+
+      this.setState({ 
+        chosenAnswersAreCorrect: chosenAnswersAreCorrect,
+        hasSubmittedAnswers: true
+      });
+    };
   
     render() {
       const answerList = this.state.allAnswers.map(answer => {
         return (
-          <div>
-            <input key={answer} type="radio" name="side-effect-question" value={answer} onChange={this.onAnswerClick} />
+          <div key={this.state.questionNumber + '_' + answer}>
+            <input type="checkbox" name="side-effect-answers" value={answer} onChange={this.onAnswerClick} />
             <span>{answer}</span>
           </div>
         )
       });
       
-      const hasChosenAnswer = this.state.chosenAnswer !== '';
-      const resultText = this.state.chosenAnswerIsCorrect ? 
-        'Het antwoord was goed!' :
-        `Het antwoord is fout, het goede antwoord is: ${this.state.correctAnswer}`
-      let answerResult = '';
-      if (hasChosenAnswer) {
-        answerResult = (
+      let result = (<button onClick={this.checkQuestionAnswers}>Submit</button>);
+      if (this.state.hasSubmittedAnswers) {
+        result = (
           <div>
-            {resultText}
-            
-            <div>
-              <button onClick={this.onNextQuestionClick}>Volgende vraag</button>
-            </div>
+            {this.state.chosenAnswersAreCorrect ? 
+              'Het antwoord was goed!' : 
+              `Het antwoord is fout, het goede antwoord is: ${this.state.correctAnswers}` 
+            }
+            <button onClick={this.onNextQuestionClick}>Volgende vraag</button>
           </div>
-        );
+        );   
       }
       
       return (
@@ -73,8 +91,8 @@ class Question extends React.Component {
           <div>{this.state.questionText}</div>
           <div>
             {answerList}
+            {result}       
           </div>
-          {answerResult}
         </div>
       );
     }

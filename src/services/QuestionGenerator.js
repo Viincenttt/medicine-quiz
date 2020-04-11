@@ -123,13 +123,10 @@ class QuestionGenerator {
 
   generateQuestion = () => {
     const randomMedicine = this.getRandomElementFromArray(this.medicines);
-    const randomCorrectSideEffect = this.getRandomElementFromArray(
-      randomMedicine.sideEffects
-    );
     const allSideEffects = this.getAllSideEffects();
 
-    const allAnswers = [randomCorrectSideEffect];
-    while (allAnswers.length < 4) {
+    const allAnswers = [...randomMedicine.sideEffects];
+    while (allAnswers.length < 10) {
       const randomSideEffect = this.getRandomElementFromArray(allSideEffects);
       const isSideEffectAlreadyInAllAnswersArray = allAnswers.includes(randomSideEffect);
       const isSideEffectCorrectAnswer = randomMedicine.sideEffects.includes(randomSideEffect);
@@ -141,7 +138,7 @@ class QuestionGenerator {
 
     return {
       question: `Wat zijn de bijeffecten van ${randomMedicine.name}`,
-      correctAnswer: randomCorrectSideEffect,
+      correctAnswers: randomMedicine.sideEffects,
       allAnswers: this.shuffleArray(allAnswers),
     };
   };
