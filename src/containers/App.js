@@ -1,5 +1,5 @@
 import React from 'react';
-import Question from '../components/Question';
+import Question from '../components/Question/Question';
 import QuestionGenerator from '../services/QuestionGenerator';
 import './App.css';
 
