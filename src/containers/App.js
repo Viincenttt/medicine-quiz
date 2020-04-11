@@ -16,7 +16,7 @@ class App extends React.Component {
   generateNewQuestion = () => {
     const questionGenerator = new QuestionGenerator();
     const generatedQuestion = questionGenerator.generateQuestion();
-    console.log(generatedQuestion.correctAnswers);
+
     this.setState({
       question: generatedQuestion,
       chosenAnswers: [],

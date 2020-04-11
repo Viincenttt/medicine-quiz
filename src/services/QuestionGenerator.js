@@ -32,11 +32,10 @@ class QuestionGenerator {
 
   getAllMedicineBrands = () => {
     return this.getDistinctValues(medicines.map((x) => x.brandName));
-  }
+  };
 
-  generateAnswers = (correctAnswers, allPossibleAnswers) => {
+  generateAnswers = (correctAnswers, allPossibleAnswers, minimumNumberOfAnswers) => {
     const allAnswers = [...correctAnswers];
-    const minimumNumberOfAnswers = 10;
     while (allAnswers.length < minimumNumberOfAnswers) {
       const randomAnswer = this.getRandomElementFromArray(allPossibleAnswers);
       const isAnswerAlreadyInArray = allAnswers.includes(randomAnswer);
@@ -47,17 +46,38 @@ class QuestionGenerator {
     }
 
     return allAnswers;
-  }
+  };
 
-  generateQuestion = () => {
+  generateRandomSideEffectsQuestion = () => {
     const randomMedicine = this.getRandomElementFromArray(medicines);
-    const allAnswers = this.generateAnswers(randomMedicine.sideEffects, this.getAllSideEffects());
+    const allAnswers = this.generateAnswers(randomMedicine.sideEffects, this.getAllSideEffects(), 10);
 
     return {
       text: `Wat zijn de bijeffecten van ${randomMedicine.name}?`,
       correctAnswers: randomMedicine.sideEffects,
       allAnswers: this.shuffleArray(allAnswers),
     };
+  };
+
+  generateRandomMedicineBrandsQuestion = () => {
+    const medicinesWithBrandName = medicines.filter(x => x.brandName !== null);
+    const randomMedicine = this.getRandomElementFromArray(medicinesWithBrandName);
+    const allAnswers = this.generateAnswers([randomMedicine.brandName], this.getAllMedicineBrands(), 5);
+    
+    return {
+      text: `Wat is het merk van ${randomMedicine.name}?`,
+      correctAnswers: [randomMedicine.brandName],
+      allAnswers: this.shuffleArray(allAnswers),
+    };
+  };
+
+  generateQuestion = () => {
+    const chance = Math.random();
+    if (chance < 0.7) {
+      return this.generateRandomSideEffectsQuestion();
+    }
+
+    return this.generateRandomMedicineBrandsQuestion();
   };
 }
 
