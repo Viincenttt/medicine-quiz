@@ -5,9 +5,7 @@ import './App.css';
 
 class App extends React.Component {
   state = {
-    questionText: '',
-    correctAnswers: [],
-    allAnswers: [],
+    question: null,
     chosenAnswers: [],
     hasSubmittedAnswers: false,
     chosenAnswersAreCorrect: false,
@@ -19,9 +17,7 @@ class App extends React.Component {
     const generatedQuestion = questionGenerator.generateQuestion();
 
     this.setState({
-      questionText: generatedQuestion.question,
-      correctAnswers: generatedQuestion.correctAnswers,
-      allAnswers: generatedQuestion.allAnswers,
+      question: generatedQuestion,
       chosenAnswers: [],
       hasSubmittedAnswers: false,
       chosenAnswersAreCorrect: false,
@@ -48,9 +44,9 @@ class App extends React.Component {
   };
 
   checkQuestionAnswers = () => {
-    let chosenAnswersAreCorrect = this.state.chosenAnswers.length === this.state.correctAnswers.length;
+    let chosenAnswersAreCorrect = this.state.chosenAnswers.length === this.state.question.correctAnswers.length;
     for (const chosenAnswer of this.state.chosenAnswers) {
-      if (!this.state.correctAnswers.includes(chosenAnswer)) {
+      if (!this.state.question.correctAnswers.includes(chosenAnswer)) {
         chosenAnswersAreCorrect = false;
       }
     }
@@ -68,7 +64,7 @@ class App extends React.Component {
   render() {
     let result = (<button onClick={this.checkQuestionAnswers}>Inleveren</button>);
     if (this.state.hasSubmittedAnswers) {
-      const correctAnswers = this.state.correctAnswers.join(', ');
+      const correctAnswers = this.state.question.correctAnswers.join(', ');
       result = (
         <div>
           <p>
@@ -85,13 +81,9 @@ class App extends React.Component {
     return (
       <div className="main-content">
         <Question 
-          questionText={this.state.questionText} 
-          correctAnswers={this.state.correctAnswers} 
-          allAnswers={this.state.allAnswers}
-          chosenAnswers={this.state.chosenAnswers}
+          question={this.state.question}
           questionNumber={this.state.questionNumber}
           onAnswerClick={this.onAnswerClick} />
-
         {result}
       </div>
     );
