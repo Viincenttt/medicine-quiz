@@ -6,7 +6,7 @@ function Question (props) {
     return "";
   }
 
-  const answerList = props.question.allAnswers.map((answer, index) => {
+  const answerList = props.question.questionAnswers.map((answer, index) => {
     return (
       <li key={props.questionNumber + "_" + index}>
         <input

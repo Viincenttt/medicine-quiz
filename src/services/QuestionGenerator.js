@@ -38,40 +38,48 @@ class QuestionGenerator {
   };
 
   generateAnswers = (correctAnswers, allPossibleAnswers, minimumNumberOfAnswers) => {
-    const allAnswers = [...correctAnswers];
-    while (allAnswers.length < minimumNumberOfAnswers) {
+    const questionAnswers = [...correctAnswers];
+    while (questionAnswers.length < minimumNumberOfAnswers) {
       const randomAnswer = this.getRandomElementFromArray(allPossibleAnswers);
-      const isAnswerAlreadyInArray = allAnswers.includes(randomAnswer);
+      const isAnswerAlreadyInArray = questionAnswers.includes(randomAnswer);
 
       if (!isAnswerAlreadyInArray) {
-        allAnswers.push(randomAnswer);
+        questionAnswers.push(randomAnswer);
       }
     }
 
-    return this.shuffleArray(allAnswers);
+    return this.shuffleArray(questionAnswers);
+  };
+
+  generateRandomQuestion = (options) => {    
+    const questionAnswers = this.generateAnswers(options.correctAnswers, options.listOfPossibleAnswers, options.totalNumberOfAnswers);
+    return {
+      text: options.text,
+      correctAnswers: options.correctAnswers,
+      questionAnswers: questionAnswers,
+    };
   };
 
   generateRandomSideEffectsQuestion = () => {
     const randomMedicine = this.getRandomElementFromArray(medicines);
-    const allAnswers = this.generateAnswers(randomMedicine.sideEffects, this.getAllSideEffects(), 10);
 
-    return {
+    return this.generateRandomQuestion({
       text: `Wat zijn de bijeffecten van ${randomMedicine.name}?`,
       correctAnswers: randomMedicine.sideEffects,
-      allAnswers: allAnswers,
-    };
+      listOfPossibleAnswers: this.getAllSideEffects(),
+      totalNumberOfAnswers: 10
+    });
   };
 
   generateRandomMedicineBrandsQuestion = () => {
-    const medicinesWithBrandName = medicines.filter(x => x.brandName !== null);
-    const randomMedicine = this.getRandomElementFromArray(medicinesWithBrandName);
-    const allAnswers = this.generateAnswers([randomMedicine.brandName], this.getAllMedicineBrands(), 5);
+    const randomMedicine = this.getRandomElementFromArray(medicines.filter(x => x.brandName !== null));
     
-    return {
+    return this.generateRandomQuestion({
       text: `Wat is het merk van ${randomMedicine.name}?`,
       correctAnswers: [randomMedicine.brandName],
-      allAnswers: allAnswers,
-    };
+      listOfPossibleAnswers: this.getAllMedicineBrands(),
+      totalNumberOfAnswers: 5
+    });
   };
 
   generateQuestion = () => {
