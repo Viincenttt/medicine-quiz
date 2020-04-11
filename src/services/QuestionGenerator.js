@@ -16,7 +16,8 @@ class QuestionGenerator {
 
   medicines = [
     {
-      name: "Dalteparine (Fragmin)",
+      name: "Dalteparine",
+      brandName: "Fragmin",
       sideEffects: [
         "Haematoom op injectieplaats",
         "Bloedingen",
@@ -24,30 +25,36 @@ class QuestionGenerator {
       ],
     },
     {
-      name: "Acenocoumarol (Sintrom)",
+      name: "Acenocoumarol",
+      brandName: "Sintrom",
       sideEffects: ["Bloedingen", "Misselijkheid", "Diarree"],
     },
     {
-      name: "Fenprocoumon (Marcoumar)",
+      name: "Fenprocoumon",
+      brandName: "Marcoumar",
       sideEffects: ["Bloedingen", "Misselijkheid", "Diarree"],
     },
     {
-      name: "Konakion (Vitamine K)",
+      name: "Konakion",
+      brandName: "Vitamine K",
       sideEffects: ["Rood gelaat", "Hevig transpireren", "Cyanose"],
     },
     {
-      name: "Carbasalaatcalcium (Ascal)",
+      name: "Carbasalaatcalcium",
+      brandName: "Ascal",
       sideEffects: [
         "Overgevoeligheidsverschijnselen bij astma",
         "Verlengde bloedingstijd",
       ],
     },
     {
-      name: "Prothrobine complex (Cofact)",
+      name: "Prothrobine complex",
+      brandName: "Cofact",
       sideEffects: ["Koorts", "Anafylactische shock", "Urticaria"],
     },
     {
-      name: "Temazepam (Normison)",
+      name: "Temazepam",
+      brandName: "Normison",
       sideEffects: [
         "Slaperigheid (overdag)",
         "Emotionele afstomping",
@@ -55,15 +62,18 @@ class QuestionGenerator {
       ],
     },
     {
-      name: "Oxazepam (Seresta)",
+      name: "Oxazepam",
+      brandName: "Seresta",
       sideEffects: ["Slaperigheid", "Spierzwakte", "Duizeligheid"],
     },
     {
       name: "Codeïne",
+      brandName: null,
       sideEffects: ["Misselijkheid", "Obstipatie", "Sufheid"],
     },
     {
-      name: "Haloperidol (Haldol)",
+      name: "Haloperidol",
+      brandName: "Haldol",
       sideEffects: [
         "Slaperigheid",
         "Afvlakking gevoelsleven",
@@ -72,7 +82,8 @@ class QuestionGenerator {
       ],
     },
     {
-      name: "Simvastine (Zocor)",
+      name: "Simvastine",
+      brandName: "Zocor",
       sideEffects: [
         "Spier- en gewrichtspijn",
         "Hoofdpijn",
@@ -80,7 +91,8 @@ class QuestionGenerator {
       ],
     },
     {
-      name: "Atorvastatine (Lipitor)",
+      name: "Atorvastatine",
+      brandName: "Lipitor",
       sideEffects: [
         "Spier- en gewrichtspijn",
         "Hoofdpijn",
@@ -88,7 +100,8 @@ class QuestionGenerator {
       ],
     },
     {
-      name: "Pravastatine (Selektine)",
+      name: "Pravastatine",
+      brandName: "Selektine",
       sideEffects: [
         "Spier- en gewrichtspijn",
         "Hoofdpijn",
