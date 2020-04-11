@@ -74,7 +74,7 @@ class Question extends React.Component {
         )
       });
       
-      let result = (<button onClick={this.checkQuestionAnswers}>Submit</button>);
+      let result = (<button onClick={this.checkQuestionAnswers}>Inleveren</button>);
       if (this.state.hasSubmittedAnswers) {
         const correctAnswers = this.state.correctAnswers.join(', ');
         result = (

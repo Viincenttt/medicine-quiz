@@ -1,5 +1,5 @@
 .question {
-    margin-top: 10%;
+    margin: 10% 0;
     border: solid 2px #FFF;
     border-radius: 5px;
     opacity: 0.8;    
@@ -21,6 +21,10 @@
 
 @media (max-width: 800px) {
     .question {
-        margin-top: 2%;
+        margin: 2% 0;
     }  
+
+    .question button {
+        width: 100%;
+    }
   }
