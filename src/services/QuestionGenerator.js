@@ -1,19 +1,4 @@
 class QuestionGenerator {
-  sideEffects = [
-    "Hoofdpijn",
-    "Misselijkheid",
-    "Obstipatie",
-    "Duizeligheid",
-    "Blozen",
-    "Hypotensie",
-    "Urineretentie",
-    "Aritmieen",
-    "Bradycardie",
-    "Haematoom op injectieplaats",
-    "Overgevoeligheid",
-    "Diarree",
-  ];
-
   medicines = [
     {
       name: "Dalteparine",
@@ -125,15 +110,27 @@ class QuestionGenerator {
     return array;
   };
 
+  getAllSideEffects = () => {
+    const allSideEffectArrays = this.medicines.map(x => x.sideEffects);    
+    const allSideEffects = [].concat.apply([], allSideEffectArrays);
+
+    const distinctSideEffects = allSideEffects.filter((value, index, self) => {
+        return self.indexOf(value) === index
+    });
+
+    return distinctSideEffects;
+  };
+
   generateQuestion = () => {
     const randomMedicine = this.getRandomElementFromArray(this.medicines);
     const randomCorrectSideEffect = this.getRandomElementFromArray(
       randomMedicine.sideEffects
     );
+    const allSideEffects = this.getAllSideEffects();
 
     const allAnswers = [randomCorrectSideEffect];
     while (allAnswers.length < 4) {
-      const randomSideEffect = this.getRandomElementFromArray(this.sideEffects);
+      const randomSideEffect = this.getRandomElementFromArray(allSideEffects);
       const isSideEffectAlreadyInAllAnswersArray = allAnswers.includes(randomSideEffect);
       const isSideEffectCorrectAnswer = randomMedicine.sideEffects.includes(randomSideEffect);
 
