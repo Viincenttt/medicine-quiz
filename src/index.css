@@ -43,3 +43,21 @@ button:hover {
     width: 90%;
   }  
 }
+
+/* Animations */ 
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 100;
+  }
+}

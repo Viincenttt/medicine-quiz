@@ -70,11 +70,13 @@ class App extends React.Component {
     return (
       <div className="main-content">
         <Question 
+          key={'question_' + this.state.questionNumber}
           question={this.state.question}
           questionNumber={this.state.questionNumber}
           onAnswerClick={this.onAnswerClick} />
 
         <Submit 
+          key={'submit_' + this.state.questionNumber}
           question={this.state.question}
           hasSubmittedAnswers={this.state.hasSubmittedAnswers}
           chosenAnswersAreCorrect={this.state.chosenAnswersAreCorrect}

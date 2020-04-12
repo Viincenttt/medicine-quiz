@@ -26,7 +26,7 @@ function Question (props) {
   });
 
   return (
-    <div>
+    <div className="question fade-in">
       <h2>{props.question.text}</h2>
       <ul>{answerList}</ul>
     </div>
