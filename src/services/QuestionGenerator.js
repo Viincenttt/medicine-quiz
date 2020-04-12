@@ -68,7 +68,7 @@ class QuestionGenerator {
       text: `Wat zijn de bijeffecten van ${randomMedicine.name}?`,
       correctAnswers: randomMedicine.sideEffects,
       listOfPossibleAnswers: this.getAllSideEffects(),
-      totalNumberOfAnswers: 10,
+      totalNumberOfAnswers: 8,
       isMultipleChoice: true
     });
   };
