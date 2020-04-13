@@ -136,21 +136,21 @@
     {
       "name": "Isosorbide-Mononitraat",
       "brandName": "Monocedo-card",
-      "sideEffects": [
-        "Spier- en gewrichtspijn",
-        "Hoofdpijn",
-        "Maag-darmklachten"
-      ]
+      "sideEffects": ["Hypotensie", "Hoofdpijn", "Blozen"]
     },
     {
       "name": "Ramipril",
       "brandName": "Tritace",
-      "sideEffects": ["Hypotensie", "Hoofdpijn", "Blozen"]
+      "sideEffects": ["Duizeligheid", "Hoofdpijn", "Prikkelhoest"]
     },
     {
       "name": "Sotalol",
       "brandName": "Sotacor",
-      "sideEffects": ["Duizeligheid", "Hoofdpijn", "Prikkelhoest"]
+      "sideEffects": [
+        "Bradycardie",
+        "Hypotensie",
+        "Verergering astma bronchiale"
+      ]
     },
     {
       "name": "Metropolol",
@@ -165,9 +165,9 @@
       "name": "Perinodpril",
       "brandName": "Coversyl",
       "sideEffects": [
-        "Bradycardie",
         "Hypotensie",
-        "Verergering astma bronchiale"
+        "Prikkelhoest",
+        "Jeuk"
       ]
     },
     {
@@ -233,7 +233,7 @@
     {
       "name": "Ranitidine",
       "brandName": "Zantac",
-      "sideEffects": ["Maag- darmklachten", "Duizelig"]
+      "sideEffects": ["Maag-darmklachten", "Duizelig"]
     },
     {
       "name": "Metformine",
@@ -355,7 +355,7 @@
       "sideEffects": ["Schimmelinfectie", "Huiduitslag"]
     },
     {
-      "name": "Nystatinez",
+      "name": "Nystatine",
       "brandName": null,
       "sideEffects": ["Maag-darmklachten"]
     },
