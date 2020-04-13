@@ -36,6 +36,11 @@ class QuestionGenerator {
     );
   };
 
+  getAllEffects = () => {
+    const allEffects = [].concat.apply([], medicines.map((x) => x.effects));
+    return this.getDistinctValues(allEffects);
+  }
+
   generateAnswers = (correctAnswers, allPossibleAnswers, minimumNumberOfAnswers) => {
     const questionAnswers = [...correctAnswers];
     while (questionAnswers.length < minimumNumberOfAnswers) {
@@ -84,10 +89,25 @@ class QuestionGenerator {
     });
   };
 
+  generateRandomMedicineEffectsQuestion = () => {
+    const randomMedicine = this.getRandomElementFromArray(medicines);
+
+    return this.generateRandomQuestion({
+      text: `Wat is de werking van ${randomMedicine.name}?`,
+      correctAnswers: randomMedicine.effects,
+      listOfPossibleAnswers: this.getAllEffects(),
+      totalNumberOfAnswers: 6,
+      isMultipleChoice: true
+    });
+  };
+
   generateQuestion = () => {
     const chance = Math.random();
-    if (chance < 0.7) {
+    if (chance < 0.4) {
       return this.generateRandomSideEffectsQuestion();
+    }
+    else if (chance < 0.8) {
+      return this.generateRandomMedicineEffectsQuestion();
     }
 
     return this.generateRandomMedicineBrandsQuestion();
