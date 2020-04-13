@@ -17,8 +17,7 @@ class QuestionGenerator {
   };
 
   getDistinctValues = (array) => {
-    const allValues = [].concat.apply([], array);
-    const distinctValues = allValues.filter((value, index, self) => {
+    const distinctValues = array.filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
 
@@ -31,9 +30,9 @@ class QuestionGenerator {
   };
 
   getAllMedicineBrands = () => {
-    return this.getDistinctValues(medicines
+    const allMedicineBrands = medicines.map((x) => x.brandName);
+    return this.getDistinctValues(allMedicineBrands
       .filter(x => x !== null)
-      .map((x) => x.brandName)
     );
   };
 
