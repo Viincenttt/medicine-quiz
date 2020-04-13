@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9da26a95aac1b47a06d80a4b2de64c0d",
+    "revision": "5622ff4b2bac8bc8e546a41a82fa6686",
     "url": "/medicine-quiz/index.html"
   },
   {
-    "revision": "f5a0499f5f6a45c2288a",
+    "revision": "36317f5b15feae51b06e",
     "url": "/medicine-quiz/static/css/main.f3c7070d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/medicine-quiz/static/js/2.8e595925.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f5a0499f5f6a45c2288a",
-    "url": "/medicine-quiz/static/js/main.be051412.chunk.js"
+    "revision": "36317f5b15feae51b06e",
+    "url": "/medicine-quiz/static/js/main.a54bafa3.chunk.js"
   },
   {
     "revision": "701a8dcd07e58873141d",
