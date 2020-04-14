@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 function Submit(props) {
     let result = (<button onClick={props.onSubmitAnswers}>Inleveren</button>);
@@ -19,5 +20,13 @@ function Submit(props) {
 
     return result;
 }
+
+Submit.propTypes = {
+  question: PropTypes.object,
+  hasSubmittedAnswers: PropTypes.bool,
+  chosenAnswersAreCorrect: PropTypes.bool,
+  onNextQuestionClick: PropTypes.func,
+  onSubmitAnswers: PropTypes.func
+};
 
 export default Submit;

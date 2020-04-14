@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import "./Question.css";
 
 function Question (props) {
@@ -32,5 +34,11 @@ function Question (props) {
     </div>
   );
 }
+
+Question.propTypes = {
+  question: PropTypes.object,
+  questionNumber: PropTypes.number,
+  onAnswerClick: PropTypes.func
+};
 
 export default Question;
