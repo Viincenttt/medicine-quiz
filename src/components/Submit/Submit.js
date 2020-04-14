@@ -6,7 +6,7 @@ function Submit(props) {
     if (props.hasSubmittedAnswers) {
       const correctAnswers = props.question.correctAnswers.join(', ');
       result = (
-        <div class="fade-in">
+        <div className="fade-in">
           <p>
             {props.chosenAnswersAreCorrect ? 
               'Het antwoord was goed!' : 
