@@ -366,7 +366,7 @@
   {
     "name": "Amoxicilline / Clavulaanzuur",
     "brandName": "Augmentin",
-    "effects": [],
+    "effects": ["Penicilline - doodt bacterien"],
     "sideEffects": [
       "Maag-darm klachten",
       "Schimmel-of gistinfecties van de slijmvliezen"
