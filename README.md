@@ -4,7 +4,7 @@ The project is hosted on GitHub pages: https://viincenttt.github.io/medicine-qui
 ## Project description
 This is a small web application that I created to help nursing students study for their medicine exam. The application attempts to simulate the real medicine exam by asking the exact same type of questions that the students will be asked during the real exam. Several nursing students have used this application to study for their medicine exam. The application is only available in dutch, since the source material I used for the medicine information was only available in dutch.
 
-The application contains a json file with information about various medicines, such as their name, brand, effects and side-effects. The application uses this information to generate random questions on these properties. The three type of questions in can generate are:
+The application contains a json file with information about various medicines, such as their name, brand, effects and side-effects. This information is then used by the application to generate random questions about these medicines and their properties. The three type of questions it can generate are:
 - "What are the effects of {name-of-medicine}" - multiple choice
 - "What are the side-effects of {name-of-medicine}" - multiple choice
 - "What is the brand of {name-of-medicine}" - single choice
