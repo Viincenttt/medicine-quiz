@@ -4,10 +4,6 @@ import PropTypes from "prop-types";
 import "./Question.css";
 
 function Question (props) {
-  if (props.question === null) {
-    return "";
-  }
-
   const questionType = props.question.isMultipleChoice ? 'checkbox' : 'radio';
   const answerList = props.question.questionAnswers.map((answer, index) => {   
     return (

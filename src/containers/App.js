@@ -1,32 +1,37 @@
 import React from 'react';
 import Question from '../components/Question/Question';
 import QuestionGenerator from '../services/QuestionGenerator';
-import Submit from '../components/Submit/Submit';
+import ResultSummary from '../components/ResultSummary/ResultSummary';
 import './App.css';
 
 class App extends React.Component {
   unansweredQuestionState = {
-    question: null,
     chosenAnswers: [],
     hasSubmittedAnswers: false,
     chosenAnswersAreCorrect: false,
   };
 
-  state = {
-    ...this.unansweredQuestionState,
-    questionNumber: 0
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      ...this.unansweredQuestionState,
+      question: this.generateNewQuestion(),
+      questionNumber: 0      
+    }
+  }
+
+  generateStateForNewQuestion = () => {
+    return {
+      ...this.unansweredQuestionState,
+      question: this.generateNewQuestion(),
+      questionNumber: this.state.questionNumber + 1
+    };
   };
 
   generateNewQuestion = () => {
-    const questionGenerator = new QuestionGenerator();
-    const generatedQuestion = questionGenerator.generateQuestion();
-
-    this.setState({
-      ...this.unansweredQuestionState,
-      question: generatedQuestion,
-      questionNumber: this.state.questionNumber + 1
-    });
-  };
+    return new QuestionGenerator().generateQuestion();
+  }
 
   onAnswerClick = (e) => {
     const chosenAnswer = e.currentTarget.value;
@@ -45,7 +50,7 @@ class App extends React.Component {
   };
 
   onNextQuestionClick = () => {
-    this.generateNewQuestion();
+    this.setState(this.generateStateForNewQuestion());
   };
 
   onSubmitAnswers = () => {
@@ -62,11 +67,15 @@ class App extends React.Component {
     });
   };
 
-  componentDidMount() {    
-    this.generateNewQuestion();
-  };  
-
   render() {
+    const submitSection = this.state.hasSubmittedAnswers ? 
+      (<ResultSummary 
+          key={'submit_' + this.state.questionNumber}
+          question={this.state.question}
+          chosenAnswersAreCorrect={this.state.chosenAnswersAreCorrect}
+          onNextQuestionClick={this.onNextQuestionClick} />) :
+        <button onClick={this.onSubmitAnswers}>Inleveren</button>
+
     return (
       <div className="main-content">
         <Question 
@@ -75,13 +84,7 @@ class App extends React.Component {
           questionNumber={this.state.questionNumber}
           onAnswerClick={this.onAnswerClick} />
 
-        <Submit 
-          key={'submit_' + this.state.questionNumber}
-          question={this.state.question}
-          hasSubmittedAnswers={this.state.hasSubmittedAnswers}
-          chosenAnswersAreCorrect={this.state.chosenAnswersAreCorrect}
-          onNextQuestionClick={this.onNextQuestionClick}
-          onSubmitAnswers={this.onSubmitAnswers} />
+        {submitSection}
       </div>
     );
   }
