@@ -1,3 +1,6 @@
+import { QuestionModel } from "../types"
+
+export const medicines: QuestionModel[] =
 [
   {
     "name": "Dalteparine",
@@ -672,3 +675,5 @@
     "sideEffects": ["Maag-darmklachten", "Neuropathie", "Spierzwakte"]
   }
 ]
+
+export default medicines;

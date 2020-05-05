@@ -1,11 +1,13 @@
-import medicines from './medicine-data.json';
+import medicines from './medicine-data';
+import { GenerateQuestionOptions } from '../types/index';
 
 class QuestionGenerator { 
-  getRandomElementFromArray = (array) => {
+  getRandomElementFromArray<T>(array: Array<T>) {
     return array[Math.floor(Math.random() * array.length)];
   };
 
-  shuffleArray = (array) => {
+  
+  shuffleArray = (array: string[]) => {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = array[i];
@@ -16,7 +18,7 @@ class QuestionGenerator {
     return array;
   };
 
-  getDistinctValues = (array) => {
+  getDistinctValues = (array: string[]) => {
     const distinctValues = array.filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
@@ -25,23 +27,21 @@ class QuestionGenerator {
   };
 
   getAllSideEffects = () => {
-    const allSideEffects = [].concat.apply([], medicines.map((x) => x.sideEffects));
+    const allSideEffects = ([] as string[]).concat.apply([], medicines.map((x) => x.sideEffects));
     return this.getDistinctValues(allSideEffects);
   };
 
   getAllMedicineBrands = () => {
-    const allMedicineBrands = medicines.map((x) => x.brandName);
-    return this.getDistinctValues(allMedicineBrands
-      .filter(x => x !== null)
-    );
+    const allMedicineBrands: string[] = medicines.map((x) => x.brandName).filter(x => x !== null).map(x => x as string);
+    return this.getDistinctValues(allMedicineBrands);
   };
 
   getAllEffects = () => {
-    const allEffects = [].concat.apply([], medicines.map((x) => x.effects));
+    const allEffects = ([] as string[]).concat.apply([], medicines.map((x) => x.effects));
     return this.getDistinctValues(allEffects);
   }
 
-  generateAnswers = (correctAnswers, allPossibleAnswers, minimumNumberOfAnswers) => {
+  generateAnswers = (correctAnswers:string[], allPossibleAnswers:string[], minimumNumberOfAnswers:number) => {
     const questionAnswers = [...correctAnswers];
     while (questionAnswers.length < minimumNumberOfAnswers) {
       const randomAnswer = this.getRandomElementFromArray(allPossibleAnswers);
@@ -55,7 +55,7 @@ class QuestionGenerator {
     return this.shuffleArray(questionAnswers);
   };
 
-  generateRandomQuestion = (options) => {    
+  generateRandomQuestion = (options: GenerateQuestionOptions) => {    
     const questionAnswers = this.generateAnswers(options.correctAnswers, options.listOfPossibleAnswers, options.totalNumberOfAnswers);
     return {
       text: options.text,
@@ -82,7 +82,7 @@ class QuestionGenerator {
     
     return this.generateRandomQuestion({
       text: `Wat is het merk van ${randomMedicine.name}?`,
-      correctAnswers: [randomMedicine.brandName],
+      correctAnswers: [randomMedicine.brandName as string],
       listOfPossibleAnswers: this.getAllMedicineBrands(),
       totalNumberOfAnswers: 5,
       isMultipleChoice: false
