@@ -3,22 +3,34 @@ import Question from '../components/Question/Question';
 import QuestionGenerator from '../services/QuestionGenerator';
 import ResultSummary from '../components/ResultSummary/ResultSummary';
 import './App.css';
+import { QuestionModel } from '../types';
 
-class App extends React.Component {
+type AppProps = {
+};
+
+type AppState = {
+  chosenAnswers: string[],
+  hasSubmittedAnswers: boolean,
+  chosenAnswersAreCorrect: boolean,
+  question: QuestionModel,
+  questionNumber: number
+};
+
+class App extends React.Component<AppProps, AppState> {
   unansweredQuestionState = {
     chosenAnswers: [],
     hasSubmittedAnswers: false,
     chosenAnswersAreCorrect: false,
   };
 
-  constructor(props) {
+  constructor(props: AppProps) {
     super(props);
 
     this.state = {
       ...this.unansweredQuestionState,
       question: this.generateNewQuestion(),
-      questionNumber: 0      
-    }
+      questionNumber: 0
+    } as AppState
   }
 
   generateStateForNewQuestion = () => {
@@ -29,11 +41,11 @@ class App extends React.Component {
     };
   };
 
-  generateNewQuestion = () => {
+  generateNewQuestion = (): QuestionModel => {
     return new QuestionGenerator().generateQuestion();
   }
 
-  onAnswerClick = (e) => {
+  onAnswerClick = (e: React.FormEvent<HTMLInputElement>) => {
     const chosenAnswer = e.currentTarget.value;
     const chosenAnswers = this.state.question.isMultipleChoice ? 
       [...this.state.chosenAnswers] : 

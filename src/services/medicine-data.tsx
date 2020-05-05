@@ -1,6 +1,6 @@
-import { QuestionModel } from "../types"
+import { MedicineModel } from "../types"
 
-export const medicines: QuestionModel[] =
+export const medicines: MedicineModel[] =
 [
   {
     "name": "Dalteparine",

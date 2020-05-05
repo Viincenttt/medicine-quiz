@@ -1,5 +1,5 @@
 import medicines from './medicine-data';
-import { GenerateQuestionOptions } from '../types/index';
+import { GenerateQuestionOptions, QuestionModel } from '../types/index';
 
 class QuestionGenerator { 
   getRandomElementFromArray<T>(array: Array<T>) {
@@ -55,7 +55,7 @@ class QuestionGenerator {
     return this.shuffleArray(questionAnswers);
   };
 
-  generateRandomQuestion = (options: GenerateQuestionOptions) => {    
+  generateRandomQuestion = (options: GenerateQuestionOptions): QuestionModel => {    
     const questionAnswers = this.generateAnswers(options.correctAnswers, options.listOfPossibleAnswers, options.totalNumberOfAnswers);
     return {
       text: options.text,
@@ -65,7 +65,7 @@ class QuestionGenerator {
     };
   };
 
-  generateRandomSideEffectsQuestion = () => {
+  generateRandomSideEffectsQuestion = (): QuestionModel => {
     const randomMedicine = this.getRandomElementFromArray(medicines);
 
     return this.generateRandomQuestion({
@@ -77,7 +77,7 @@ class QuestionGenerator {
     });
   };
 
-  generateRandomMedicineBrandsQuestion = () => {
+  generateRandomMedicineBrandsQuestion = (): QuestionModel => {
     const randomMedicine = this.getRandomElementFromArray(medicines.filter(x => x.brandName !== null));
     
     return this.generateRandomQuestion({
@@ -89,7 +89,7 @@ class QuestionGenerator {
     });
   };
 
-  generateRandomMedicineEffectsQuestion = () => {
+  generateRandomMedicineEffectsQuestion = (): QuestionModel => {
     const randomMedicine = this.getRandomElementFromArray(medicines);
 
     return this.generateRandomQuestion({
@@ -101,7 +101,7 @@ class QuestionGenerator {
     });
   };
 
-  generateQuestion = () => {
+  generateQuestion = (): QuestionModel => {
     const chance = Math.random();
     if (chance < 0.4) {
       return this.generateRandomSideEffectsQuestion();
