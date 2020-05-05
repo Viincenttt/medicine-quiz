@@ -2,12 +2,12 @@ import medicines from './medicine-data';
 import { GenerateQuestionOptions, QuestionModel } from '../types/index';
 
 class QuestionGenerator { 
-  getRandomElementFromArray<T>(array: Array<T>) {
+  private getRandomElementFromArray<T>(array: Array<T>): T {
     return array[Math.floor(Math.random() * array.length)];
   };
 
   
-  shuffleArray = (array: string[]) => {
+  private shuffleArray<T>(array: Array<T>): Array<T> {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = array[i];
@@ -18,7 +18,7 @@ class QuestionGenerator {
     return array;
   };
 
-  getDistinctValues = (array: string[]) => {
+  private getDistinctValues<T>(array: Array<T>): Array<T> {
     const distinctValues = array.filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
@@ -26,22 +26,22 @@ class QuestionGenerator {
     return distinctValues;
   };
 
-  getAllSideEffects = () => {
+  private getAllSideEffects = (): string[] => {
     const allSideEffects = ([] as string[]).concat.apply([], medicines.map((x) => x.sideEffects));
     return this.getDistinctValues(allSideEffects);
   };
 
-  getAllMedicineBrands = () => {
+  private getAllMedicineBrands = (): string[] => {
     const allMedicineBrands: string[] = medicines.map((x) => x.brandName).filter(x => x !== null).map(x => x as string);
     return this.getDistinctValues(allMedicineBrands);
   };
 
-  getAllEffects = () => {
+  private getAllEffects = (): string[] => {
     const allEffects = ([] as string[]).concat.apply([], medicines.map((x) => x.effects));
     return this.getDistinctValues(allEffects);
   }
 
-  generateAnswers = (correctAnswers:string[], allPossibleAnswers:string[], minimumNumberOfAnswers:number) => {
+  private generateAnswers = (correctAnswers:string[], allPossibleAnswers:string[], minimumNumberOfAnswers:number): string[] => {
     const questionAnswers = [...correctAnswers];
     while (questionAnswers.length < minimumNumberOfAnswers) {
       const randomAnswer = this.getRandomElementFromArray(allPossibleAnswers);
@@ -55,7 +55,7 @@ class QuestionGenerator {
     return this.shuffleArray(questionAnswers);
   };
 
-  generateRandomQuestion = (options: GenerateQuestionOptions): QuestionModel => {    
+  private generateRandomQuestion = (options: GenerateQuestionOptions): QuestionModel => {    
     const questionAnswers = this.generateAnswers(options.correctAnswers, options.listOfPossibleAnswers, options.totalNumberOfAnswers);
     return {
       text: options.text,
@@ -65,7 +65,7 @@ class QuestionGenerator {
     };
   };
 
-  generateRandomSideEffectsQuestion = (): QuestionModel => {
+  private generateRandomSideEffectsQuestion = (): QuestionModel => {
     const randomMedicine = this.getRandomElementFromArray(medicines);
 
     return this.generateRandomQuestion({
@@ -77,7 +77,7 @@ class QuestionGenerator {
     });
   };
 
-  generateRandomMedicineBrandsQuestion = (): QuestionModel => {
+  private generateRandomMedicineBrandsQuestion = (): QuestionModel => {
     const randomMedicine = this.getRandomElementFromArray(medicines.filter(x => x.brandName !== null));
     
     return this.generateRandomQuestion({
@@ -89,7 +89,7 @@ class QuestionGenerator {
     });
   };
 
-  generateRandomMedicineEffectsQuestion = (): QuestionModel => {
+  private generateRandomMedicineEffectsQuestion = (): QuestionModel => {
     const randomMedicine = this.getRandomElementFromArray(medicines);
 
     return this.generateRandomQuestion({
@@ -101,7 +101,7 @@ class QuestionGenerator {
     });
   };
 
-  generateQuestion = (): QuestionModel => {
+  public generateQuestion = (): QuestionModel => {
     const chance = Math.random();
     if (chance < 0.4) {
       return this.generateRandomSideEffectsQuestion();
