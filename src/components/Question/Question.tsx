@@ -1,9 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import "./Question.css";
+import { QuestionModel } from "../../types";
 
-function Question (props) {
+type QuestionProps = {
+  question: QuestionModel,
+  questionNumber: number,
+  onAnswerClick: (event: React.FormEvent<HTMLInputElement>) => void
+};
+
+export const Question: React.FC<QuestionProps> = (props: QuestionProps) => {
   const questionType = props.question.isMultipleChoice ? 'checkbox' : 'radio';
   const answerList = props.question.questionAnswers.map((answer, index) => {   
     return (
@@ -30,11 +36,5 @@ function Question (props) {
     </div>
   );
 }
-
-Question.propTypes = {
-  question: PropTypes.object,
-  questionNumber: PropTypes.number,
-  onAnswerClick: PropTypes.func
-};
 
 export default Question;
