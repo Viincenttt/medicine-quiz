@@ -7,7 +7,7 @@ type ResultSummaryProps = {
   onNextQuestionClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 };
 
-export const ResultSummary: React.FC<ResultSummaryProps> = (props: ResultSummaryProps) => {
+export const ResultSummary: React.FC<ResultSummaryProps> = (props: ResultSummaryProps): JSX.Element => {
   const correctAnswers = props.question.correctAnswers.join(', ');
   const resultText = props.chosenAnswersAreCorrect ?
       'Het antwoord was goed!' : 

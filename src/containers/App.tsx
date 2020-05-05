@@ -17,27 +17,22 @@ type AppState = {
 };
 
 class App extends React.Component<AppProps, AppState> {
-  unansweredQuestionState = {
-    chosenAnswers: [],
-    hasSubmittedAnswers: false,
-    chosenAnswersAreCorrect: false,
-  };
-
   constructor(props: AppProps) {
     super(props);
 
     this.state = {
-      ...this.unansweredQuestionState,
-      question: this.generateNewQuestion(),
+      ...this.generateStateForNewQuestion(0),
       questionNumber: 0
     } as AppState
   }
 
-  generateStateForNewQuestion = () => {
+  generateStateForNewQuestion = (questionNumber: number): AppState => {
     return {
-      ...this.unansweredQuestionState,
+      chosenAnswers: [],
+      hasSubmittedAnswers: false,
+      chosenAnswersAreCorrect: false,
       question: this.generateNewQuestion(),
-      questionNumber: this.state.questionNumber + 1
+      questionNumber: questionNumber
     };
   };
 
@@ -45,7 +40,7 @@ class App extends React.Component<AppProps, AppState> {
     return new QuestionGenerator().generateQuestion();
   }
 
-  onAnswerClick = (e: React.FormEvent<HTMLInputElement>) => {
+  onAnswerClick = (e: React.FormEvent<HTMLInputElement>): void => {
     const chosenAnswer = e.currentTarget.value;
     const chosenAnswers = this.state.question.isMultipleChoice ? 
       [...this.state.chosenAnswers] : 
@@ -61,11 +56,11 @@ class App extends React.Component<AppProps, AppState> {
     this.setState({chosenAnswers: chosenAnswers});
   };
 
-  onNextQuestionClick = () => {
-    this.setState(this.generateStateForNewQuestion());
+  onNextQuestionClick = (): void => {
+    this.setState(this.generateStateForNewQuestion(this.state.questionNumber + 1));
   };
 
-  onSubmitAnswers = () => {
+  onSubmitAnswers = (): void => {
     let chosenAnswersAreCorrect = this.state.chosenAnswers.length === this.state.question.correctAnswers.length;
     for (const chosenAnswer of this.state.chosenAnswers) {
       if (!this.state.question.correctAnswers.includes(chosenAnswer)) {
@@ -79,7 +74,7 @@ class App extends React.Component<AppProps, AppState> {
     });
   };
 
-  render() {
+  render() : JSX.Element {
     const submitSection = this.state.hasSubmittedAnswers ? 
       (<ResultSummary 
           key={'submit_' + this.state.questionNumber}

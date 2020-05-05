@@ -9,7 +9,7 @@ type QuestionProps = {
   onAnswerClick: (event: React.FormEvent<HTMLInputElement>) => void
 };
 
-export const Question: React.FC<QuestionProps> = (props: QuestionProps) => {
+export const Question: React.FC<QuestionProps> = (props: QuestionProps): JSX.Element => {
   const questionType = props.question.isMultipleChoice ? 'checkbox' : 'radio';
   const answerList = props.question.questionAnswers.map((answer, index) => {   
     return (
